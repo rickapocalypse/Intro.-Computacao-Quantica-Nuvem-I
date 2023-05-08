@@ -5,11 +5,10 @@ import matplotlib.pyplot as plt
 
 qasm_sim = Aer.get_backend('qasm_simulator') 
 
-qc = QuantumCircuit(2,2)
+qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
-qc.measure([0,1],[0,1])
-
+qc.measure_all()
 resultado = qasm_sim.run(qc).result()  
 counts = resultado.get_counts(qc)
 plot_histogram(counts)
